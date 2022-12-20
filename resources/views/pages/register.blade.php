@@ -37,7 +37,7 @@
             </div>
 
             <div class="form-outline mb-4">
-              <input type="text" id="nama_lengkap" name="name" class="form-control form-control-lg" />
+              <input type="text" id="nama_lengkap" name="nama" class="form-control form-control-lg" />
               <label class="form-label" for="nama_lengkap">Nama Lengkap</label>
             </div>
 

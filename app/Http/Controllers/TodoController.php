@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 
+
 class TodoController extends Controller
 {
     /**
@@ -16,7 +17,41 @@ class TodoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function profile_store(Request $request){
+        $id = Auth::user()->id;
+        $data = User::find($id);
+       if($request->file('image_profile')){
+            $file = $request->file('image_profile');
 
+            $filename = date('YmdHi').$file->getClientOriginalName();
+            $file->move(public_path('upload/user_images'));
+            $data['image_profile'] = $filename;
+       }
+
+        $data->save();
+
+        return redirect()->route('todo.profile');
+    }
+
+
+     public function profile_edit()
+     {
+        $id = Auth::user()->id;
+        $editdata = User::find($id);
+        return view('pages.dashboard.editfoto', compact('editdata'));
+     }
+     public function profile(){
+ 
+         // $user = User::where('id', Auth::user()->id)->first();
+         $id = Auth::user()->id;
+         $user = User::find($id);
+         return view('pages.dashboard.profile', compact('user'));
+     }
+
+    public function all_user(){
+        $posts = User::all();
+        return view('pages.dashboard.posts', compact('posts') );
+    }
     
     public function register(){
         return view('pages.register');
@@ -86,7 +121,11 @@ class TodoController extends Controller
             'name' => $request->name,
             'username' => $request->username,
             'password' => Hash::make($request->password),
-            'email' => $request->email
+            'email' => $request->email,
+            'role' => 'user',
+        
+
+            
             
         ]);
 

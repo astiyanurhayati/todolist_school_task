@@ -27,7 +27,15 @@
             <a href="#">Dropdown</a>
             <i class='bx bxs-chevron-down htmlcss-arrow arrow  '></i>
             <ul class="htmlCss-sub-menu sub-menu" style="z-index: 50">
+              @if(Auth::user()->role == "user")
+
               <li><a href="/todo/">My Todolist</a></li>
+              @endif
+              <li><a href="{{route('todo.profile')}}">My Profile</a></li>
+
+                @if(Auth::user()->role == "admin")
+                <li><a href="/todo/all">All Data User</a></li>
+                @endif
               <li><a href="/logout">Logout</a></li>
             </ul>
           </li>

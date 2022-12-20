@@ -14,7 +14,7 @@
           </a>
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="#">Hi {{ Auth::user()->username  }}</a></li>
-        
+            <li><a class="dropdown-item" href="">Profile</a></li>
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="/logout">Logout</a></li>
           </ul>
